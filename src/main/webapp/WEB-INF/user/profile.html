@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    table {
+        margin: auto; /* Устанавливаем автоматические отступы по бокам */
+        border-collapse: collapse; /* Объединяем границы ячеек */
+        width: 50%; /* Задаем ширину таблицы */
+    }
+
+    th, td,h1 {
+        border: 1px solid black; /* Устанавливаем границы ячеек */
+        padding: 8px; /* Устанавливаем внутренний отступ в ячейках */
+        text-align: center; /* Выравниваем текст по центру */
+    }
+</style>
+
+<body>
+
+   <h1>Admin</h1>
+   <h1>MY PROFIL</h1>
+   <table >
+       <tr>
+           <td>ID</td>
+           <td>NAME</td>
+           <td>AGE</td>
+           <td>GMAIL</td>
+           <td>PASSWORD</td>
+           <td>ROLE</td>
+           <td>CREAT-DATE</td>
+           <td>SUBSCRIPTION-STATUS</td>
+           <td style="background-color: aqua">UPDATE</td>
+           <td style="background-color: red">DELETE</td>
+       </tr>
+       <tr th:object="${user11}">
+           <td th:text="${user11.id}"></td>
+           <td th:text="${user11.name}"></td>
+           <td th:text="${user11.age}"></td>
+           <td th:text="${user11.gmail}"></td>
+           <td th:text="${user11.password}"></td>
+           <td th:text="${user11.role}"></td>
+           <td th:text="${user11.createDate}"></td>
+           <td th:text="${user11.subscriptionStatus}"></td>
+           <td>
+               <a th:href="@{/users/update/{id}(id=${user11.getId()})}">
+                   <button type="button" style="background-color:aqua">update</button>
+               </a>
+           </td>
+           <td>
+               <a th:href="@{/users/{id}(id=${user11.id})}">
+                   <button type="button" style="background-color:red">delete</button>
+               </a>
+           </td>
+       </tr>
+       <td>
+           <a th:href="@{/users/sign-in}">
+               <button type="button" style="background-color:aqua">log out</button>
+           </a>
+       </td>
+   </table>
+
+
+</body>
+</html>

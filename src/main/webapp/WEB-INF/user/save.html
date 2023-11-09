@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #000;
+        background-color: #f8f8f8;
+        align-items: center ;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .form {
+        max-width: 320px;
+        padding: 15px;
+        margin: 20px auto;
+        background-color: #fff;
+    }
+
+    .input {
+        display: block;
+        width: 100%;
+        padding: 8px 10px;
+        margin-bottom: 10px;
+
+        border: 1px solid #ccc;
+
+        font-family: inherit;
+        font-size: 16px;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 8px 10px;
+
+        border: 0;
+        background-color: #1cbc11;
+        cursor: pointer;
+
+        font-family: inherit;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    .btn:hover {
+        background-color: #14a20a;
+    }
+</style>
+<body>
+
+<!--<form th:object="${user}"-->
+<!--      th:action="@{/users/save} "-->
+<!--      th:method="post"          >-->
+
+<!--    <input th:text="name" th:field="*{name}" placeholder="name">-->
+<!--    <br>-->
+
+<!--    <input th:text="age" th:field="*{age}" placeholder="age">-->
+<!--    <br>-->
+<!--    <input th:text="password" th:field="*{password}" placeholder="password"     >-->
+<!--    <br>-->
+<!--    <input th:text="gmail" th:field="*{gmail}" placeholder="gmail"      >-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <button type="submit" style="color:yellow">ADD</button>-->
+<!--</form>-->
+
+
+<form class="form"
+      th:object="${user}"
+      th:action="@{/users/save} "
+      th:method="post"  >
+
+    <input class="input"  placeholder="name"     text="name"      th:field="*{name}" >
+    <input class="input"  placeholder="age"      text="age"       th:field="*{age}"      >
+    <input class="input"  placeholder="password" text="password"  th:field="*{password}"     >
+    <input class="input"  placeholder="gmail"    text="gmail"     th:field="*{gmail}"     >
+    <button class="btn"   type="submit">Add</button>
+</form>
+
+</body>
+</html>

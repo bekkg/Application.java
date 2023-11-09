@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<style>
+    /** {box-sizing: border-box}*/
+
+    /*!* Add padding to containers *!*/
+    /*.container {*/
+    /*    padding: 16px;*/
+    /*}*/
+
+    /*!* Full-width input fields *!*/
+    /*input[type=text], input[type=password] {*/
+    /*    width: 100%;*/
+    /*    padding: 15px;*/
+    /*    margin: 5px 0 22px 0;*/
+    /*    display: inline-block;*/
+    /*    border: none;*/
+    /*    background: #f1f1f1;*/
+    /*}*/
+
+    /*input[type=text]:focus, input[type=password]:focus {*/
+    /*    background-color: #ddd;*/
+    /*    outline: none;*/
+    /*}*/
+
+    /*!* Overwrite default styles of hr *!*/
+    /*hr {*/
+    /*    border: 1px solid #f1f1f1;*/
+    /*    margin-bottom: 25px;*/
+    /*}*/
+
+    /*!* Set a style for the submit/register button *!*/
+    /*.registerbtn {*/
+    /*    background-color: #4CAF50;*/
+    /*    color: white;*/
+    /*    padding: 16px 20px;*/
+    /*    margin: 8px 0;*/
+    /*    border: none;*/
+    /*    cursor: pointer;*/
+    /*    width: 100%;*/
+    /*    opacity: 0.9;*/
+    /*}*/
+
+    /*.registerbtn:hover {*/
+    /*    opacity:1;*/
+    /*}*/
+
+    /*!* Add a blue text color to links *!*/
+    /*a {*/
+    /*    color: dodgerblue;*/
+    /*}*/
+
+    /*!* Set a grey background color and center the text of the "sign in" section *!*/
+    /*.signin {*/
+    /*    background-color: #f1f1f1;*/
+    /*    text-align: center;*/
+    /*}*/
+
+
+
+
+    * {box-sizing: border-box;}
+
+    /* Style the input container */
+    .input-container {
+        display: flex;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* Style the form icons */
+    .icon {
+        padding: 10px;
+        background: dodgerblue;
+        color: white;
+        min-width: 50px;
+        text-align: center;
+    }
+
+    /* Style the input fields */
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        outline: none;
+    }
+
+    .input-field:focus {
+        border: 2px solid dodgerblue;
+    }
+
+    /* Set a style for the submit button */
+    .btn {
+        background-color: dodgerblue;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    .btn:hover {
+        opacity: 1;
+    }
+
+
+</style>
+
+
+<body>
+
+<form th:object="${user}"
+      th:method="get"
+      th:action="@{/users/get-sign-in}"
+
+      >
+    <h2>Register Form</h2>
+    <div class="input-container">
+        <i class="fa fa-envelope icon"></i>
+        <input th:text="gmail" th:field="*{gmail}" placeholder="email">
+    </div>
+    <div class="input-container">
+        <i class="fa fa-key icon"></i>
+        <input th:text="password" th:field="*{password}" placeholder="password">
+    </div>
+    <button type="submit" class="btn">Sign In</button>
+    <br>
+        <button class="button">   <a href="/users/add"> Registration </a>   </button>
+</form>
+
+
+<!--    <form th:action="@{/users/get-sign-in}"-->
+<!--          th:method="get"-->
+<!--          th:object="${user}"      >-->
+
+<!--        <div class="container">-->
+<!--            <h1>Register</h1>-->
+<!--            <p>      </p>-->
+<!--            <hr>-->
+<!--            <b>Email</b>-->
+
+<!--&lt;!&ndash;            <label for="email">   </label>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            name="email"               name="psw"           required    required&ndash;&gt;&ndash;&gt;-->
+
+<!--            <input   text="gmail" th:field="*{gmail}"   type="text" placeholder="Enter Email">-->
+<!--            <b>Password</b>-->
+
+<!--&lt;!&ndash;            <label for="psw">   </label>&ndash;&gt;-->
+
+<!--            <input text="password" th:field="*{password}"   type="password" placeholder="Enter Password">-->
+<!--&lt;!&ndash;            <label for="psw-repeat"><b>Repeat Password</b></label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>&ndash;&gt;-->
+<!--            <hr>-->
+<!--            <p>          <a >       </a>  </p>-->
+<!--            <button type="submit" class="registerbtn">Add</button>-->
+<!--        </div>-->
+
+<!--        <div class="container signin">-->
+<!--            <p>      <a href="/users/add">   Sign-in   </a>   </p>-->
+<!--        </div>-->
+
+<!--    </form>-->
+
+</body>
+</html>>

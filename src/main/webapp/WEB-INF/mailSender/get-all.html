@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    table {
+        margin: auto; /* Устанавливаем автоматические отступы по бокам */
+        border-collapse: collapse; /* Объединяем границы ячеек */
+        width: 50%; /* Задаем ширину таблицы */
+    }
+
+    th, td {
+        border: 1px solid black; /* Устанавливаем границы ячеек */
+        padding: 8px; /* Устанавливаем внутренний отступ в ячейках */
+        text-align: center; /* Выравниваем текст по центру */
+    }
+</style>
+
+<body>
+
+    <table>
+    <tr>
+        <td>ID</td>
+        <td>SENDER</td>
+        <td>TEXT</td>
+        <td style="background-color: aqua">UPDATE</td>
+        <td style="background-color: red">DELETE</td>
+    </tr>
+
+    <tr th:each="mailSender:${mailSenderList}">
+
+        <td th:text="${mailSender.id}"></td>
+        <td th:text="${mailSender.sender}"></td>
+        <td th:text="${mailSender.text}"></td>
+        <td>
+            <a th:href="@{/mailsender/update/{id}(id=${mailSender.getId()})}">
+                <button type="button" style="background-color:aqua">update</button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/mailsender/{id}(id=${mailSender.id})}">
+                <button type="button" style="background-color:red">delete</button>
+            </a>
+        </td>
+    </tr>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    form, input {
+        text-align: center;
+    }
+</style>
+
+<body>
+
+<form th:object="${app}"
+      th:action="@{/application/{id}(id=${app.getId()}) } "
+      th:method="post">
+
+    <input th:text="name" th:field="*{name}" placeholder="name">
+    <br>
+    <input th:text="description" th:field="*{description}" placeholder="description">
+    <br>
+    <input th:text="developer" th:field="*{developer}" placeholder="developer">
+    <br>
+    <input th:text="version" th:field="*{version}" placeholder="version">
+    <br>
+
+    <br>
+    <div class="radio-button">
+        <input type="radio" value="BASIC" th:field="*{appStatus}" id="BASIC">
+
+        <lebel class="header" for="BASIC"><h3>BASIC</h3></lebel>
+
+        <input type="radio" value="PREMIUM" th:field="*{appStatus}" id="PREMIUM">
+
+        <lebel class="header" for="PREMIUM"><h3>PREMIUM</h3></lebel>
+    </div>
+
+    <br>
+    <button type="submit" style="color:yellow">ADD</button>
+
+</form>
+
+</body>
+</html>

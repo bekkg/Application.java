@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    form, input {
+        text-align: center;
+    }
+</style>
+
+<body>
+
+<form th:object="${genres}"
+      th:action="@{/genre/save}"
+      th:method="post">
+
+    <input th:text="name" th:field="*{name}" placeholder="name">
+    <br>
+    <input th:text="description" th:field="*{description}" placeholder="description">
+    <br>
+
+    <!--    <br>-->
+    <!--    <div class="input-group input-group-lg">-->
+    <!--        <input th:text="name" th:field="*{name}">-->
+    <!--        <br>-->
+    <!--        <input th:text="name" th:field="*{color}">-->
+    <!--    </div>-->
+    <!--      <select th:field="*{"user-->
+
+    <br>
+    <button type="submit" style="color:green">ADD</button>
+
+</form>
+
+
+</body>
+</html>

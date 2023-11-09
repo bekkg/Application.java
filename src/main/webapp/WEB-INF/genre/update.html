@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:object="${genre}"
+      th:action="@{/genre/{id}(id=${genre.getId()})}"
+      th:method="post">
+
+    <input th:text="name" th:field="*{name}" placeholder="name">
+    <br>
+    <input th:text="description" th:field="*{description}" placeholder="description">
+    <br>
+    <input th:text="creatDate" th:field="*{creatDate}" placeholder="creatDate">
+    <br>
+    <br>
+    <button type="submit" style="color:yellow">UPDATE</button>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main menu</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .button {
+            padding: 40px;
+            font-size: 28px;
+            /*background-color: #3498db; !* Цвет фона кнопки *!*/
+            color: #fff; /* Цвет текста кнопки */
+            border: none; /* Убираем границу кнопки */
+            border-radius: 10px; /* Закругляем углы кнопки */
+            cursor: pointer; /* Устанавливаем курсор в виде стрелки */
+        }
+
+        .button:hover {
+            background-color: #2980b9; /* Изменяем цвет фона при наведении курсора */
+        }
+
+        .button {
+            padding: 40px;
+            font-size: 28px;
+        }
+    </style>
+</head>
+<body>
+
+<a href="/application/find-all">
+    <button class="button">APPLICATION</button>
+</a>
+<br>
+<a href="/genre/find-all">
+    <button class="button"> GENRES</button>
+</a>
+<br>
+<a href="/users/find-all">
+    <button class="button"> USERS</button>
+</a>
+<br>
+<td><form th:object="${user22}" th:method="get" th:action="@{/users/profile/{Id}(Id=${user22.id})}">
+    <input type="submit" name="submit" style="height: 40px; width: 80px; background-color:red;"/> </form> </td>
+
+</body>
+</html>
