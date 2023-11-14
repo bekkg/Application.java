@@ -3,6 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body{
+            background-image: url("https://www.rosphoto.com/images/u/articles/1510/4_8.jpg");
+            background-size: cover;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            padding: 300px 700px 700px 500px;
+        }
+        form {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -14,10 +27,8 @@
     <br>
     <input th:text="description" th:field="*{description}" placeholder="description">
     <br>
-    <input th:text="creatDate" th:field="*{creatDate}" placeholder="creatDate">
     <br>
-    <br>
-    <button type="submit" style="color:yellow">UPDATE</button>
+    <button type="submit" style="color: red">UPDATE</button>
 
 </form>
 

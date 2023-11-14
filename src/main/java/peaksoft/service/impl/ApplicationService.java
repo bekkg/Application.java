@@ -43,12 +43,13 @@ public class ApplicationService implements ModelService<Application>   {
     @Override
     public void update(Long id, Application application) {
         Application oldapplication = findById(id);
+
         oldapplication.setDescription(application.getDescription());
         oldapplication.setName(application.getName());
         oldapplication.setDeveloper(application.getDeveloper());
         oldapplication.setVersion(application.getVersion());
-        application.setAppStatus(application.getAppStatus());
-        application.setGenreName(application.getGenreName());
+        oldapplication.setAppStatus(application.getAppStatus());
+        oldapplication.setGenreName(application.getGenreName());
         entityManager.persist(oldapplication);
     }
 
@@ -58,13 +59,10 @@ public class ApplicationService implements ModelService<Application>   {
     }
 
     public void searchApplicationByName(String name){
-        entityManager.createQuery("SELECT a FROM Application a WHERE name =:name")
-                .setParameter("name",name);
+        entityManager.createQuery("SELECT a FROM Application a WHERE id =:id")
+                .setParameter("id",name).getSingleResult();
     }
 
-    public void getApplicationByUserId(Long userId){
-    entityManager.find(UserService.class,userId);
-    }
 
 
 }

@@ -13,9 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class GenreService
-        implements ModelService <Genre>
-    {
+public class GenreService implements ModelService <Genre> {
 
     @PersistenceContext
     private EntityManager entityManager;

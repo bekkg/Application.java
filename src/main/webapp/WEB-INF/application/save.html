@@ -6,12 +6,23 @@
 </head>
 
 <style>
+    body{
+        background-image: url("https://mriyamed.ru/upload/iblock/9d8/9d834efe30cc41c2dbc4f58e748417f5.jpg");
+        background-size: cover;
+        object-fit: cover;
+        display: flex;
+        height: 100vh;
+        margin: 300px 0px 100px 500px;
+    }
+
     form, input {
+        color: springgreen;
         text-align: center;
     }
 </style>
 
 <body>
+
 <form th:object="${applications}"
       th:action="@{/application/save}"
       th:method="post">
@@ -23,7 +34,7 @@
     <br>
     <input th:text="version" th:field="*{version}" placeholder="version">
     <br>
-    <br>
+
 
     <div class="radio-button">
         <input type="radio" value="BASIC" th:field="*{appStatus}" id="BASIC">
@@ -34,13 +45,15 @@
 
         <lebel class="header" for="PREMIUM">  <h3>PREMIUM</h3>    </lebel>
     </div>
+    <select th:field="*{appStatus}">
+        <option th:each="app:${}"  th:value="${app.id}"   th:text="@{app.name}">     </option>
+    </select>
 
     <select th:field="*{genreId}">
         <option th:each="genre:${genreList}"
                 th:value="${genre.id}"
                 th:text="${genre.name}">
         </option>
-
     </select>
 
   <br>

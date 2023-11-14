@@ -2,89 +2,106 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
 </head>
 <style>
+    /* style.css */
     body {
+        background:url("https://img3.akspic.ru/crops/5/4/4/1/5/151445/151445-zemlya-temnota-astronomiya-vselennaya-kosmos-3840x2160.jpg") ;
+        background-size: cover;
         font-family: Arial, sans-serif;
-        font-size: 16px;
-        color: #000;
-        background-color: #f8f8f8;
-        align-items: center ;
+        /*background-color: #f4f4f4;*/
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh; /* Добавлено для выравнивания по центру */
     }
 
-    * {
-        box-sizing: border-box;
-    }
-
-    .form {
-        max-width: 320px;
-        padding: 15px;
-        margin: 20px auto;
+    .container {
+        width: 300px; /* Уменьшена ширина контейнера */
         background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    .input {
-        display: block;
-        width: 100%;
-        padding: 8px 10px;
-        margin-bottom: 10px;
+    h2 {
+        text-align: center;
+        color: #333;
+    }
 
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 8px;
+    }
+
+    input {
+        padding: 8px;
+        margin-bottom: 16px;
         border: 1px solid #ccc;
-
-        font-family: inherit;
-        font-size: 16px;
+        border-radius: 4px;
     }
 
-    .btn {
-        display: block;
-        width: 100%;
-        padding: 8px 10px;
-
-        border: 0;
-        background-color: #1cbc11;
-        cursor: pointer;
-
-        font-family: inherit;
-        font-size: 16px;
+    button {
+        background-color: #4caf50;
         color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
     }
 
-    .btn:hover {
-        background-color: #14a20a;
+    button:hover {
+        background-color: #45a049;
     }
+
+
 </style>
 <body>
+<div class="container">
+    <h2>REGISTRATION</h2>
+    <form th:object="${user}"
+          th:action="@{/save}"
+          th:method="post">
 
-<!--<form th:object="${user}"-->
-<!--      th:action="@{/users/save} "-->
-<!--      th:method="post"          >-->
+        <label for="username">Name:</label>
+        <input type="text" id="username" th:field="*{name}" required>
 
-<!--    <input th:text="name" th:field="*{name}" placeholder="name">-->
-<!--    <br>-->
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required>
 
-<!--    <input th:text="age" th:field="*{age}" placeholder="age">-->
-<!--    <br>-->
-<!--    <input th:text="password" th:field="*{password}" placeholder="password"     >-->
-<!--    <br>-->
-<!--    <input th:text="gmail" th:field="*{gmail}" placeholder="gmail"      >-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <button type="submit" style="color:yellow">ADD</button>-->
-<!--</form>-->
+        <label for="password">password:</label>
+        <input type="password" id="password" th:field="*{password}" required>
 
+        <label for="age">age:</label>
+        <input type="age" id="age" th:field="*{age}" required>
 
-<form class="form"
-      th:object="${user}"
-      th:action="@{/users/save} "
-      th:method="post"  >
+        <!--        <label for="appStatus">Subscribe Status:</label>-->
+        <!--        <select id="appStatus" th:field="*{subscriptionStatus}" required>-->
+        <!--            <option value="BASIC">BASIC</option>-->
+        <!--            <option value="PREMIUM">PREMIUM</option>-->
+        <!--        </select>-->
 
-    <input class="input"  placeholder="name"     text="name"      th:field="*{name}" >
-    <input class="input"  placeholder="age"      text="age"       th:field="*{age}"      >
-    <input class="input"  placeholder="password" text="password"  th:field="*{password}"     >
-    <input class="input"  placeholder="gmail"    text="gmail"     th:field="*{gmail}"     >
-    <button class="btn"   type="submit">Add</button>
-</form>
+        <!--        <label>-->
+        <!--            <input type="checkbox" checked="checked" name="subscribe" th:field="*{subscribeToTheNewsletter}">-->
+        <!--            Daily Newsletter-->
+        <!--        </label>-->
 
+        <button type="submit">REGISTRATION</button>
+        <br>
+        <button>
+            <a href="/sign">SIGN IN</a>
+        </button>
+
+    </form>
+
+</div>
 </body>
 </html>

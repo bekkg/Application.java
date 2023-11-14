@@ -8,8 +8,9 @@
 <style>
     /* style.css */
     body {
+        background-image: url("https://images.techinsider.ru/upload/img_cache/eea/eea2eba60a7a59cb9f1b0a7460581b17_cropped_666x500.jpg");
+        background-size: cover;
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
         margin: 0;
         padding: 0;
         display: flex;
@@ -25,20 +26,24 @@
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
     h2 {
         text-align: center;
         color: #333;
     }
+
     table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 20px;
     }
+
     th, td {
         border: 1px solid #ddd;
         padding: 8px;
         text-align: left;
     }
+
     th {
         background-color: #4caf50;
         color: #fff;
@@ -47,7 +52,7 @@
 <body>
 
 <div class="container"
-       th:object="${user22}" >
+     th:object="${user22}">
     <h2>Applications</h2>
     <table>
         <thead>
@@ -74,13 +79,21 @@
             <td th:text="${app.genreName}"/>
             <td th:text="${app.createDate}"/>
             <td th:text="${app.getName()}"/>
-            <td>   <form th:method="post" th:action="@{/users/download/{userid}/{appid}(userid=${user22.id},appid=${app.id})}">
-                <input type="submit" name="download" style="background-color: #14a20a">
-            </form>   </td>
+<!--                        <td>   <form th:method="post" th:action="@{/users/download/{userid}/{appid}(userid=${user22.id},appid=${app.id})}">-->
+<!--                            <input type="submit" name="download" style="background-color: #14a20a">   </form>   </td>-->
+            <td>
+                <form th:method="post"
+                      th:action="@{/users/download/{userid}/{appid}(userid=${user22.id},appid=${app.id})}">
+                    <input type="submit" name="download" style="background-color: #14a20a"></form>
+            </td>
         </tr>
         </tbody>
+
     </table>
-    <button> <a th:href="@{applications/add}">CREATE APPLICATION</a> </button>
+    <button type="button" style="background-color: #1cbc11"><a th:href="@{/users/profile/{id}(id=${user22.id})}"> </a></button>
+    <button><a th:href="@{/application/add}">CREATE APPLICATION</a></button>
+
 </div>
+
 </body>
 </html>

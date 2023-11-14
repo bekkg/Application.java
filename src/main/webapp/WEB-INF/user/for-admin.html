@@ -6,48 +6,48 @@
     <title>Main menu</title>
     <style>
         body {
+            background-image: url("https://million-wallpapers.ru/wallpapers/4/42/346181180430775/zastavka-rabochego-stola-na-kompyutere.jpg");
+            background-size: cover  /* если картина больше экрана , то это команда сделает по размеру экрана */;
             display: flex;
-            justify-content: center;
+            gap: 20px;
+            justify-content: center ;
             align-items: center;
-            height: 100vh;
+            height: 65vh;
             margin: 0;
+
         }
         .button {
-            padding: 40px;
-            font-size: 28px;
+            /*padding:40px 50px 30px;*/
+            padding: 30px;
+            font-size: 20px;
             /*background-color: #3498db; !* Цвет фона кнопки *!*/
-            color: #fff; /* Цвет текста кнопки */
+            color: blue; /* Цвет текста кнопки */
             border: none; /* Убираем границу кнопки */
             border-radius: 10px; /* Закругляем углы кнопки */
             cursor: pointer; /* Устанавливаем курсор в виде стрелки */
         }
-
         .button:hover {
-            background-color: #2980b9; /* Изменяем цвет фона при наведении курсора */
+            background-color: brown; /* Изменяем цвет фона при наведении курсора */
         }
 
-        .button {
-            padding: 40px;
-            font-size: 28px;
-        }
+        /*.button {*/
+        /*    padding: 40px;*/
+        /*    font-size: 28px;*/
+        /*}*/
+
     </style>
 </head>
 <body>
 
-<a href="/application/find-all">
-    <button class="button">APPLICATION</button>
-</a>
+<a href="/application/find-all">   <button class="button"> APPLICATION </button>    </a>
 <br>
-<a href="/genre/find-all">
-    <button class="button"> GENRES</button>
-</a>
+<a href="/genre/find-all">  <button class="button"> GENRES </button>   </a>
 <br>
-<a href="/users/find-all">
-    <button class="button"> USERS</button>
-</a>
+   <a href="/users/find-all">  <button class="button"> USERS </button>   </a>
 <br>
-<td><form th:object="${user22}" th:method="get" th:action="@{/users/profile/{Id}(Id=${user22.id})}">
-    <input type="submit" name="submit" style="height: 40px; width: 80px; background-color:red;"/> </form> </td>
+  <form class="button" th:object="${user22}" th:method="get" th:action="@{/users/profile/{Id}(Id=${user22.id}) }">
+    <input type="submit" name="download" style="height: 40px; width: 80px; background-color:red;"/>
+  </form>
 
 </body>
 </html>

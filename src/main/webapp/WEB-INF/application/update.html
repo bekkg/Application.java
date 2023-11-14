@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <style>
+    body{
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToLl6NEYaLoX8uWBfCZgI3A7uqtwrLCPupkf0BtlZJYvJDkqU7AgMtvs5DKV7wafOuasQ&usqp=CAU");
+        /*background-size: cover;*/
+        object-fit: cover;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 100px 500px 700px 400px;
+    }
     form, input {
         text-align: center;
     }
@@ -35,6 +44,13 @@
 
         <lebel class="header" for="PREMIUM"><h3>PREMIUM</h3></lebel>
     </div>
+
+    <select th:field="*{genreId}">
+        <option th:each="genre:${genreList}"
+                th:value="${genre.id}"
+                th:text="${genre.name}">
+        </option>
+    </select>
 
     <br>
     <button type="submit" style="color:yellow">ADD</button>

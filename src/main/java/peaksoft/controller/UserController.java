@@ -5,25 +5,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.model.User;
-import peaksoft.model.enums.Role;
 import peaksoft.service.impl.ApplicationService;
 import peaksoft.service.impl.UserService;
 
 
+
 @Controller
-@RequestMapping("/users")
+@RequestMapping()
 public class UserController {
 
     private final UserService userService;
     private final ApplicationService applicationService;
 
+
     @Autowired
     public UserController(UserService userService, ApplicationService applicationService) {
         this.userService = userService;
         this.applicationService = applicationService;
+
     }
 
-    @GetMapping("/add")
+    @GetMapping()
     public String addUser(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("appp",applicationService.findAll());
@@ -36,28 +38,7 @@ public class UserController {
         User user1 = userService.findById(user.getId());
         model.addAttribute("user22", user1);
         model.addAttribute("apps",applicationService.findAll());
-        if (user1.getRole().equals(Role.ADMIN)) {
-            return "user/for-admin";
-        }
-        return "user/for-user";
-    }
-
-    @GetMapping("/sign-in")
-    public String signIn(Model model) {
-        model.addAttribute("user", new User());
-        return "/user/sign-in";
-    }
-
-    @GetMapping("/get-sign-in")
-    public String getSignIn(@ModelAttribute("user") User user, Model model) {
-//        if ( user.getPassword() == null && user.getGmail() == null){
-//          model.addAttribute(user);
-//        }
-        User user1 = userService.getUserByGmailName(user.getGmail(), user.getPassword());
-        model.addAttribute("user22", user1);
-        model.addAttribute("apps",applicationService.findAll());
-
-        if (user1.getRole().equals(Role.ADMIN)) {
+        if (user1.getRoles().get(0).getRoleName().equals("ADMIN")){
             return "user/for-admin";
         }
         return "user/for-user";
@@ -69,6 +50,28 @@ public class UserController {
         return "user/get-all";
     }
 
+
+//    @GetMapping("/sign-in")
+//    public String signIn(Model model) {
+//        model.addAttribute("user", new User());
+//        return "user/sign-in";
+//    }
+//
+//    @GetMapping("/get-sign-in")
+//    public String getSignIn(@ModelAttribute("user") User user, Model model) {
+//        if ( user.getPassword() == null && user.getEmail() == null){
+//          model.addAttribute(user);
+//        }
+//        User user1 = userService.getUserByGmailName(user.getEmail(), user.getPassword());
+//        model.addAttribute("user22", user1);
+//        model.addAttribute("apps",applicationService.findAll());
+//        if (user1.getRole().equals(Role.ADMIN)) {
+//            return "user/for-admin";
+//        }
+//        return "user/for-user";
+//    }
+
+
     @GetMapping("/update/{id}")
     public String update(@PathVariable("id") Long id, Model model) {
         User user = userService.findById(id);
@@ -79,10 +82,10 @@ public class UserController {
     @PostMapping("{id}")
     public String saveUpdate(@PathVariable("id") Long id, @ModelAttribute("user") User user) {
         userService.update(id, user);
-        if (user.getRole().equals(Role.ADMIN)) {
+        if (user.getAuthorities().equals("ADMIN")) {
             return "user/for-admin";
         }
-        return "user/for-user";
+        return "redirect:find-all";
     }
 
     @GetMapping("{id}")
@@ -95,7 +98,7 @@ public class UserController {
     public String getUsers(@PathVariable("id") Long id,Model model){
         User user1 = userService.findById(id);
         model.addAttribute("user11", user1);
-        return "user/profile";
+    return "user/profile";
     }
 
     @PostMapping("/download/{userid}/{appid}")
@@ -103,9 +106,8 @@ public class UserController {
     userService.addApplicationByUser(userid, appid);
     User user1 = userService.findById(userid);
     model.addAttribute("user22", user1);
-    model.addAttribute("apppp",applicationService.findAll());
-    String s = "user/for-user";
-    return s;
+    model.addAttribute("apppp",applicationService.findById(appid));
+    return "user/add-application";
     }
 
 }

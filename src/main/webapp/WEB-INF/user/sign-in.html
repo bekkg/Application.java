@@ -118,13 +118,13 @@
 
 <form th:object="${user}"
       th:method="get"
-      th:action="@{/users/get-sign-in}"
+      th:action="@{/get-sign-in}"
 
       >
     <h2>Register Form</h2>
     <div class="input-container">
         <i class="fa fa-envelope icon"></i>
-        <input th:text="gmail" th:field="*{gmail}" placeholder="email">
+        <input th:text="email" th:field="*{email}" placeholder="email">
     </div>
     <div class="input-container">
         <i class="fa fa-key icon"></i>

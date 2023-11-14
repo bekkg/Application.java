@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 
 <style>
+    body{
+        background-image: url("https://lh6.googleusercontent.com/QPYokb_8IkElRVrN8kdlyzmMz3m7j_1mcerG4jPXw9IrqIy3KRJB98Uy-V5_XrOH3CvhEtgtnjGSpLy5JD1RFoDUR4uGmi4Huno746i7nU2ljPVuUAtJ8X1JzVrLTxbBIEcTB-8C");
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        height: 50vh;
+        object-fit: cover;
+    }
     table {
+        display: flex;
+        padding: 0 30px 80px 330px;
+        /*align-items: center;*/
         margin: auto; /* Устанавливаем автоматические отступы по бокам */
         border-collapse: collapse; /* Объединяем границы ячеек */
         width: 50%; /* Задаем ширину таблицы */
+
     }
 
     th, td {
         border: 1px solid black; /* Устанавливаем границы ячеек */
         padding: 8px; /* Устанавливаем внутренний отступ в ячейках */
         text-align: center; /* Выравниваем текст по центру */
+        background-color: #4caf50;
+        color: white;
     }
 </style>
 
@@ -31,8 +45,8 @@
         <td>APP-STATUS</td>
         <td>CREAT-DATE</td>
         <td>genreName</td>
-        <td style="background-color: aqua">UPDATE</td>
-        <td style="background-color: red">DELETE</td>
+        <td >UPDATE</td>
+        <td >DELETE</td>
     </tr>
     <tr th:each="application1:${applicationList}">
         <td th:text="${application1.id}"></td>

@@ -21,19 +21,16 @@ public class MailSenderService implements ModelService<MailSender> {
     public void save(MailSender mailSender) {
         mailSender.setCreateDate(LocalDate.now());
         entityManager.persist(mailSender);
-        System.out.println("success save Mailsender Service");
     }
     @Override
     public MailSender findById(Long id) {
         MailSender mailSender = entityManager.find(MailSender.class, id);
-
         return mailSender;
     }
 
     @Override
     public List<MailSender> findAll() {
         List<MailSender> mailSenderList = entityManager.createQuery("from MailSender").getResultList();
-        System.out.println("success findAll Mailsender Service");
         return mailSenderList;
     }
 
@@ -43,13 +40,11 @@ public class MailSenderService implements ModelService<MailSender> {
         oldMailSender.setSender(mailSender.getSender());
         oldMailSender.setText(mailSender.getText());
         oldMailSender.setCreateDate(mailSender.getCreateDate());
-        System.out.println("success update Mailsender Service");
         entityManager.persist(oldMailSender);
     }
 
     @Override
     public void deleteById(Long id) {
-        System.out.println("success deleteById Mailsender Service");
         entityManager.remove(findById(id));
     }
 

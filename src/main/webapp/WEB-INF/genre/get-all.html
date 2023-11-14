@@ -7,13 +7,22 @@
 </head>
 
 <style>
+    body{
+        display: flex;
+        height: 15vh;
+        background-image: url("https://img-cdn.tinkoffjournal.ru/best-movies-2023-og-fb.mfyhhre0k655..png");
+        background-size: cover;
+        object-fit: cover;
+    }
     table {
+       color: #333333;
         margin: auto; /* Устанавливаем автоматические отступы по бокам */
         border-collapse: collapse; /* Объединяем границы ячеек */
         width: 50%; /* Задаем ширину таблицы */
     }
 
     th, td {
+        color: blue;
         border: 1px solid black; /* Устанавливаем границы ячеек */
         padding: 8px; /* Устанавливаем внутренний отступ в ячейках */
         text-align: center; /* Выравниваем текст по центру */
@@ -29,8 +38,8 @@
               <td>NAME</td>
               <td>DESCRIPTION</td>
               <td>CREAT-DATE</td>
-              <td style="background-color: aqua">UPDATE</td>
-              <td style="background-color: red">DELETE</td>
+              <td >UPDATE</td>
+              <td >DELETE</td>
         </tr>
          <tr th:each="genre:${genreList}">
           <td th:text="${genre.id}"></td>
@@ -45,7 +54,7 @@
     </td>
              <td>
                  <a th:href="@{/genre/{id}(id=${genre.id})}">
-                     <button type="button" style="background-color:red">delete</button>
+                     <button type="button" style="background-color:aqua">delete</button>
                  </a>
              </td>
 

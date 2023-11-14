@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"   >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -18,33 +19,36 @@
         padding: 8px; /* Устанавливаем внутренний отступ в ячейках */
         text-align: center; /* Выравниваем текст по центру */
     }
+    h1{
+        text-align: center;
+    }
 </style>
 
 <body>
-<h1>get- all</h1>
+<h1>get-all</h1>
 
 <table>
     <tr>
         <td>ID</td>
         <td>NAME</td>
         <td>AGE</td>
-        <td>GMAIL</td>
+        <td>EMAIL</td>
         <td>PASSWORD</td>
         <td>ROLE</td>
         <td>CREAT-DATE</td>
         <td>SUBSCRIPTION-STATUS</td>
         <td>SUBSCRIPTION-TO-THE-LETTER</td>
         <td style="background-color: aqua">UPDATE</td>
-        <td style="background-color: red">DELETE</td>
+        <td sec:authorize="hasAuthority('ADMIN')"  style="background-color: red"> DELETE </td>
     </tr>
 
     <tr th:each="user:${userList}">
         <td th:text="${user.id}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.age}"></td>
-        <td th:text="${user.gmail}"></td>
+        <td th:text="${user.email}"></td>
         <td th:text="${user.password}"></td>
-        <td th:text="${user.role}"></td>
+        <td th:text="${user.getAuthorities()}"></td>
         <td th:text="${user.createDate}"></td>
         <td th:text="${user.subscriptionStatus}"></td>
         <td th:text="${user.subscribeToTheNewsletter}"></td>
@@ -53,13 +57,16 @@
                 <button type="button" style="background-color:aqua">update</button>
             </a>
         </td>
-
-        <td>
+        <td sec:authorize="hasAuthority('ADMIN')" >
             <a th:href="@{/users/{id}(id=${user.id})}">
-                <button type="button" style="background-color:red">delete</button>
+                <button type="button" style="background-color:red"> delete </button>
             </a>
         </td>
-
+        <td>
+            <a th:href="@{/logout}">
+           <button type="button" style="background-color: #14a20a " >logout </button>
+            </a>
+        </td>
     </tr>
 </table>
 

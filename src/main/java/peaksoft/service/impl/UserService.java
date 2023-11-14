@@ -2,13 +2,16 @@ package peaksoft.service.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import peaksoft.model.Application;
+import peaksoft.model.Role;
 import peaksoft.model.User;
-import peaksoft.model.enums.Role;
 import peaksoft.service.ModelService;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -18,29 +21,39 @@ public class UserService implements ModelService<User> {
 
     @PersistenceContext
     private EntityManager entityManager;
-
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void save(User user) {
-        if (!findAll().isEmpty()) {
-            user.setRole(Role.USER);
+        if (findAll().isEmpty()) {
+            Role adminRole = roleService.findByName("ADMIN");
+            adminRole.setUsers(Collections.singletonList(user));
+            user.setRoles(Collections.singletonList(adminRole));
         } else {
-            user.setRole(Role.ADMIN);
+            Role userRole = roleService.findByName("USER");
+            userRole.setUsers(Collections.singletonList(user));
+            user.setRoles(Collections.singletonList(userRole));
         }
         user.setCreateDate(LocalDate.now());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         entityManager.persist(user);
     }
 
+    public User findByName(String name){
+        return entityManager.createQuery("select u from User u where  u.email=:email", User.class).setParameter("email",name).getSingleResult();
+    }
     @Override
     public User findById(Long id) {
         User user = entityManager.find(User.class, id);
-        System.out.println("success findById User Service");
         return user;
     }
 
     @Override
     public List<User> findAll() {
-        List<User> userList = entityManager.createQuery("from User").getResultList();
+        List<User> userList = entityManager.createQuery("from User",User.class).getResultList();
         return userList;
     }
 
@@ -49,9 +62,8 @@ public class UserService implements ModelService<User> {
         User oldUser = findById(id);
         oldUser.setName(user.getName());
         oldUser.setAge(user.getAge());
-        oldUser.setGmail(user.getGmail());
+        oldUser.setEmail(user.getEmail());
         oldUser.setPassword(user.getPassword());
-        oldUser.setRole(user.getRole());
         oldUser.setSubscribeToTheNewsletter(user.isSubscribeToTheNewsletter());
         entityManager.persist(oldUser);
     }
@@ -61,29 +73,40 @@ public class UserService implements ModelService<User> {
         entityManager.remove(findById(id));
     }
 
-    public User getUserByGmailName(String gmail, String password) {
-        return (User) entityManager.createQuery("SELECT u FROM User u WHERE u.gmail =:gmail and u.password=:password")
-                .setParameter("gmail", gmail)
-                .setParameter("password", password);
+    public User getUserByGmailName(String email, String password) {
+        return (User) entityManager.createQuery("SELECT u FROM User u WHERE u.email =:email and u.password=:password")
+                .setParameter("email", email)
+                .setParameter("password", password).getSingleResult();
     }
 
-    public void searchUserByName(String userName) {
-        entityManager.createQuery("SELECT u FROM User u WHERE u.name =:name")
-                .setParameter("name", userName);
+    public User searchUserByName(String userName) {
+       return entityManager.createQuery("SELECT u FROM User u WHERE u.email =:email", User.class)
+                .setParameter("email", userName).getSingleResult();
     }
 
-    public void addApplicationByUser(Long userid, Long appid){
+    public void addApplicationByUser(Long userid, Long appid) {
         User user = findById(userid);
         Application application = entityManager.find(Application.class, appid);
-        if ( user != null && application != null){
+        if (user != null && application != null) {
             List<Application> myApplications = user.getApplications();
-            if (!myApplications.contains(application)){
+            if (!myApplications.contains(application)) {
                 myApplications.add(application);
                 entityManager.persist(user);
             }
         }
     }
 
+    public void addRoleByUser ( Long userid, Long roleid){
+        User user = findById(userid);
+        Role role = entityManager.find(Role.class,roleid);
+        if (user != null && role != null){
+            List <Role> myRole = user.getRoles();
+            if(!myRole.contains(role)){
+                myRole.add(role);
+                entityManager.persist(user);
+            }
+        }
+    }
 
 }
 
