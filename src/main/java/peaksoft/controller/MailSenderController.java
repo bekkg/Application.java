@@ -8,7 +8,7 @@ import peaksoft.model.MailSender;
 import peaksoft.service.impl.MailSenderService;
 
 @Controller
-@RequestMapping("/mailsender")
+@RequestMapping("/mailSender")
 public class MailSenderController {
 
     private final MailSenderService mailSenderService;
@@ -21,21 +21,18 @@ public class MailSenderController {
     @GetMapping("/add")
     public String addMailSender(Model model) {
         model.addAttribute("mailSender1", new MailSender());
-        System.out.println("success add Mailsender Controller");
-        return "mailsender/save";
+        return "mailSender/save";
     }
 
     @PostMapping("/save")
-    private String saveMailSender(@ModelAttribute("mailSender") MailSender mailSender) {
+    private String saveMailSender(@ModelAttribute("mailSender1") MailSender mailSender) {
         mailSenderService.save(mailSender);
-        System.out.println("success save Mailsender Controller");
         return "redirect:find-all";
     }
 
     @GetMapping("/find-all")
     public String getAllMailSender(Model model) {
         model.addAttribute("mailSenderList", mailSenderService.findAll());
-        System.out.println("success getall Mailsender Controller");
         return "mailsender/get-all";
     }
 

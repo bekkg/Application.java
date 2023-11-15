@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,11 +43,17 @@
 <a href="/application/find-all">   <button class="button"> APPLICATION </button>    </a>
 <br>
 <a href="/genre/find-all">  <button class="button"> GENRES </button>   </a>
+<br >
+   <a sec:authorize="hasAuthority('ADMIN')"  href="/users/find-all">  <button class="button"> USERS </button>   </a>
 <br>
-   <a href="/users/find-all">  <button class="button"> USERS </button>   </a>
-<br>
-  <form class="button" th:object="${user22}" th:method="get" th:action="@{/users/profile/{Id}(Id=${user22.id}) }">
+  <form class="button" th:object="${user22}" th:method="get" th:action="@{/profile/{Id}(Id=${user22.id}) }">
     <input type="submit" name="download" style="height: 40px; width: 80px; background-color:red;"/>
+     <br>
+      <td>
+          <a th:href="@{/logout}">
+              <button type="button" style="background-color:aqua">log out</button>
+          </a>
+      </td>
   </form>
 
 </body>

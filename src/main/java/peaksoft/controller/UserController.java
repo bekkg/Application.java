@@ -9,9 +9,8 @@ import peaksoft.service.impl.ApplicationService;
 import peaksoft.service.impl.UserService;
 
 
-
 @Controller
-@RequestMapping()
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -22,7 +21,6 @@ public class UserController {
     public UserController(UserService userService, ApplicationService applicationService) {
         this.userService = userService;
         this.applicationService = applicationService;
-
     }
 
     @GetMapping()
@@ -38,10 +36,7 @@ public class UserController {
         User user1 = userService.findById(user.getId());
         model.addAttribute("user22", user1);
         model.addAttribute("apps",applicationService.findAll());
-        if (user1.getRoles().get(0).getRoleName().equals("ADMIN")){
-            return "user/for-admin";
-        }
-        return "user/for-user";
+        return "user/for-admin";
     }
 
     @GetMapping("/find-all")
@@ -49,28 +44,6 @@ public class UserController {
         model.addAttribute("userList", userService.findAll());
         return "user/get-all";
     }
-
-
-//    @GetMapping("/sign-in")
-//    public String signIn(Model model) {
-//        model.addAttribute("user", new User());
-//        return "user/sign-in";
-//    }
-//
-//    @GetMapping("/get-sign-in")
-//    public String getSignIn(@ModelAttribute("user") User user, Model model) {
-//        if ( user.getPassword() == null && user.getEmail() == null){
-//          model.addAttribute(user);
-//        }
-//        User user1 = userService.getUserByGmailName(user.getEmail(), user.getPassword());
-//        model.addAttribute("user22", user1);
-//        model.addAttribute("apps",applicationService.findAll());
-//        if (user1.getRole().equals(Role.ADMIN)) {
-//            return "user/for-admin";
-//        }
-//        return "user/for-user";
-//    }
-
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable("id") Long id, Model model) {

@@ -83,7 +83,7 @@
 <!--                            <input type="submit" name="download" style="background-color: #14a20a">   </form>   </td>-->
             <td>
                 <form th:method="post"
-                      th:action="@{/users/download/{userid}/{appid}(userid=${user22.id},appid=${app.id})}">
+                      th:action="@{/download/{userid}/{appid}(userid=${user22.id},appid=${app.id})}">
                     <input type="submit" name="download" style="background-color: #14a20a"></form>
             </td>
         </tr>
@@ -92,7 +92,11 @@
     </table>
     <button type="button" style="background-color: #1cbc11"><a th:href="@{/users/profile/{id}(id=${user22.id})}"> </a></button>
     <button><a th:href="@{/application/add}">CREATE APPLICATION</a></button>
-
+    <td>
+        <a th:href="@{/logout}">
+            <button type="button" style="background-color:aqua">log out</button>
+        </a>
+    </td>
 </div>
 
 </body>

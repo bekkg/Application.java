@@ -38,8 +38,8 @@
         <td>CREAT-DATE</td>
         <td>SUBSCRIPTION-STATUS</td>
         <td>SUBSCRIPTION-TO-THE-LETTER</td>
-        <td style="background-color: aqua">UPDATE</td>
-        <td sec:authorize="hasAuthority('ADMIN')"  style="background-color: red"> DELETE </td>
+        <td style="background-color: aqua" > UPDATE</td>
+        <td sec:authorize="hasAuthority('ADMIN')"  style="background-color: red" > DELETE </td>
     </tr>
 
     <tr th:each="user:${userList}">
@@ -53,12 +53,12 @@
         <td th:text="${user.subscriptionStatus}"></td>
         <td th:text="${user.subscribeToTheNewsletter}"></td>
         <td>
-            <a th:href="@{/users/update/{id}(id=${user.getId()})}">
+            <a th:href="@{/update/{id}(id=${user.getId()})}">
                 <button type="button" style="background-color:aqua">update</button>
             </a>
         </td>
         <td sec:authorize="hasAuthority('ADMIN')" >
-            <a th:href="@{/users/{id}(id=${user.id})}">
+            <a th:href="@{/{id}(id=${user.id})}">
                 <button type="button" style="background-color:red"> delete </button>
             </a>
         </td>

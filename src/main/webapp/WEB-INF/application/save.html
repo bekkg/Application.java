@@ -16,11 +16,11 @@
     }
 
     form, input {
+
         color: springgreen;
         text-align: center;
     }
 </style>
-
 <body>
 
 <form th:object="${applications}"
@@ -35,7 +35,6 @@
     <input th:text="version" th:field="*{version}" placeholder="version">
     <br>
 
-
     <div class="radio-button">
         <input type="radio" value="BASIC" th:field="*{appStatus}" id="BASIC">
 
@@ -45,9 +44,6 @@
 
         <lebel class="header" for="PREMIUM">  <h3>PREMIUM</h3>    </lebel>
     </div>
-    <select th:field="*{appStatus}">
-        <option th:each="app:${}"  th:value="${app.id}"   th:text="@{app.name}">     </option>
-    </select>
 
     <select th:field="*{genreId}">
         <option th:each="genre:${genreList}"
@@ -55,7 +51,6 @@
                 th:text="${genre.name}">
         </option>
     </select>
-
   <br>
       <button type="submit" style="color:green">ADD</button>
 </form>

@@ -6,6 +6,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/get-all.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/save.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/sign-in.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user/update.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/user" />
       </map>
     </option>
   </component>

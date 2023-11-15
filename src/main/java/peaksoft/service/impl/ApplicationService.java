@@ -17,8 +17,6 @@ public class ApplicationService implements ModelService<Application>   {
     @PersistenceContext
     private EntityManager entityManager;
 
-
-
     @Override
     public void save(Application application) {
         Genre  genre = entityManager.find(Genre.class, application.getGenreId());
@@ -59,8 +57,9 @@ public class ApplicationService implements ModelService<Application>   {
     }
 
     public void searchApplicationByName(String name){
-        entityManager.createQuery("SELECT a FROM Application a WHERE id =:id")
-                .setParameter("id",name).getSingleResult();
+       entityManager.createQuery("SELECT a FROM Application a WHERE name =:name")
+                .setParameter("name",name).getSingleResult();
+
     }
 
 

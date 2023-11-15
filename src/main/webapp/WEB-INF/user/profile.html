@@ -1,73 +1,95 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+
 </head>
 <style>
+    /* style.css */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: blue;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
 
-    body{
-    background-image: url("https://wavehouse.ru/wp-content/uploads/2017/04/mini.jpeg");
-        background-size: cover;
+    .container {
+        width: 50%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
     table {
-        margin: auto; /* Устанавливаем автоматические отступы по бокам */
-        border-collapse: collapse; /* Объединяем границы ячеек */
-        width: 50%; /* Задаем ширину таблицы */
-        background-color: dodgerblue;
+        width: 100%;
+        margin-top: 20px;
     }
-    th, td, h1 {
-        border: 1px solid black; /* Устанавливаем границы ячеек */
-        padding: 8px; /* Устанавливаем внутренний отступ в ячейках */
-        text-align: center; /* Выравниваем текст по центру */
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
     }
-    h1{text-align: center;
-        color: darkred }
+
+    td:first-child {
+        font-weight: bold;
+    }
 
 </style>
 <body>
 
-<table>
-    <h1> PROFILE</h1>
-    <tr>
-        <td>ID</td>
-        <td>NAME</td>
-        <td>AGE</td>
-        <td>EMAIL</td>
-        <td>PASSWORD</td>
-        <td>ROLE</td>
-        <td>CREAT-DATE</td>
-        <td>SUBSCRIPTION-STATUS</td>
-    </tr>
-    <tr th:object="${user11}">
-        <td th:text="${user11.id}"></td>
-        <td th:text="${user11.name}"></td>
-        <td th:text="${user11.age}"></td>
-        <td th:text="${user11.email}"></td>
-        <td th:text="${user11.password}"></td>
-        <td th:text="${user11.getAuthorities()}"></td>
-        <td th:text="${user11.createDate}"></td>
-        <td th:text="${user11.subscriptionStatus}"></td>
-
-<!--        <td>-->
-<!--            <a th:href="@{/users/update/{id}(id=${user11.getId()})}">-->
-<!--                <button type="button" style="background-color:aqua">update</button>-->
-<!--            </a>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--            <a th:href="@{/users/{id}(id=${user11.id})}">-->
-<!--                <button type="button" style="background-color:red">delete</button>-->
-<!--            </a>-->
-<!--        </td>-->
-
-    </tr>
-    <td>
-        <a th:href="@{/users/sign-in}">
-            <button type="button" style="background-color:aqua">log out</button>
-        </a>
-    </td>
-    </tr>
-</table>
+<div class="container">
+    <h2>Information</h2>
+    <table>
+        <tbody th:object="${user11}">
+        <tr >
+            <td>ID:</td>
+            <td th:text="${user11.id}"></td> <!-- Замени на фактический ID пользователя -->
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td th:text="${user11.name}"></td> <!-- Замени на фактическое имя пользователя -->
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td th:text="${user11.age}"></td> <!-- Замени на фактический возраст пользователя -->
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td th:text="${user11.email}"></td> <!-- Замени на фактический email пользователя -->
+        </tr>
+        <tr>
+            <td>Role:</td>
+            <td th:text="${user11.role}"></td> <!-- Замени на фактическую роль пользователя -->
+        </tr>
+        <tr>
+            <td>Subscribe:</td>
+            <td th:text="${user11.subscribeToTheNewsletter}"></td> <!-- Замени на фактическое значение подписки на рассылку -->
+        </tr>
+        <tr>
+            <td>Subscribe status:</td>
+            <td th:text="${user11.subscriptionStatus}"></td> <!-- Замени на фактический статус подписки -->
+        </tr>
+        <tr>
+            <td>Create date:</td>
+            <td th:text="${user11.createDate}"></td> <!-- Замени на фактическую дату создания пользователя -->
+        </tr>
+        </tbody>
+    </table>
+    <button> <a  th:href="@{/update/{id}(id=${user11.id})}">  <strong>UPDATE</strong>  </a>  </button>
+    <button><a th:href="@{/logout}">LOG OUT</a></button>
+</div>
 
 </body>
 </html>

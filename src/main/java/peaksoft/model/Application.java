@@ -35,7 +35,6 @@ public class Application {
             CascadeType.REFRESH})
     @JoinColumn(name = "genreName_id")
     private Genre genre;
-
     @Transient
     private Long genreId;
 

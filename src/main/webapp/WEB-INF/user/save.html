@@ -8,7 +8,7 @@
 <style>
     /* style.css */
     body {
-        background:url("https://img3.akspic.ru/crops/5/4/4/1/5/151445/151445-zemlya-temnota-astronomiya-vselennaya-kosmos-3840x2160.jpg") ;
+        background-image: url("https://im.kommersant.ru/Issues.photo/NAUKA_Online/2017/03/11/KMO_111307_16742_1_t218_201141.jpg");
         background-size: cover;
         font-family: Arial, sans-serif;
         /*background-color: #f4f4f4;*/
@@ -83,22 +83,15 @@
         <label for="age">age:</label>
         <input type="age" id="age" th:field="*{age}" required>
 
-        <!--        <label for="appStatus">Subscribe Status:</label>-->
-        <!--        <select id="appStatus" th:field="*{subscriptionStatus}" required>-->
-        <!--            <option value="BASIC">BASIC</option>-->
-        <!--            <option value="PREMIUM">PREMIUM</option>-->
-        <!--        </select>-->
-
-        <!--        <label>-->
-        <!--            <input type="checkbox" checked="checked" name="subscribe" th:field="*{subscribeToTheNewsletter}">-->
-        <!--            Daily Newsletter-->
-        <!--        </label>-->
 
         <button type="submit">REGISTRATION</button>
         <br>
         <button>
-            <a href="/sign">SIGN IN</a>
+            <a href="/login">SIGN IN</a>
         </button>
+        <label>
+            <input type="checkbox" checked="checked" name="subscribe"> Daily Newsletter
+        </label>
 
     </form>
 
