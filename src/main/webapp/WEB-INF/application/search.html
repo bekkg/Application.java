@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+
+</head>
+<style>
+    /* style.css */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: beige;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 50%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    td:first-child {
+        font-weight: bold;
+    }
+
+</style>
+<body>
+<form th:action="@{/application/search}"
+       th:method="GET">
+    <input type="text" name="name" th:value="${name}" required>
+    <br>
+    <button type="submit">Search</button>
+</form>
+
+<div class="container">
+
+    <h2>Information</h2>
+    <table>
+        <tbody
+                th:each="ap:${appList}">
+        <tr >
+            <td>ID:</td>
+            <td th:text="${ap.id}"></td>
+        </tr>
+        <tr>
+            <td>NAME:</td>
+            <td th:text="${ap.name}"></td>
+        </tr>
+        <tr>
+            <td>DESCRIPTION:</td>
+            <td th:text="${ap.description}"></td>
+        </tr>
+        <tr>
+            <td>DEVELOPER:</td>
+            <td th:text="${ap.developer}"></td>
+        </tr>
+        <tr>
+            <td>VERSION:</td>
+            <td th:text="${ap.version}"></td>
+        </tr>
+        <tr>
+            <td>APP-STATUS:</td>
+            <td th:text="${ap.appStatus}"></td>
+        </tr>
+        <tr>
+            <td>GENRE-NAME:</td>
+            <td th:text="${ap.genreName}"></td>
+        </tr>
+        <tr>
+            <td>DATA:</td>
+            <td th:text="${ap.createDate}"></td>
+        </tr>
+        <button> <a  th:href="@{/application/update/{id}(id=${ap.id})}">  <strong>UPDATE</strong>  </a>  </button>
+        <button> <a th:href="@{/logout}">LOG OUT</a> </button>
+        <button> <a th:href="@{/application/add}">CREATE</a> </button>
+        <button class="button" style="color: #4caf50" >  <a th:href="/application/main">MAIN</a> </button>
+        <button type="button" onclick="window.location.href='/application/my-Application'">MY APPLICATIONS</button>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

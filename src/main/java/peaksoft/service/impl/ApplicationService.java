@@ -41,7 +41,6 @@ public class ApplicationService implements ModelService<Application>   {
     @Override
     public void update(Long id, Application application) {
         Application oldapplication = findById(id);
-
         oldapplication.setDescription(application.getDescription());
         oldapplication.setName(application.getName());
         oldapplication.setDeveloper(application.getDeveloper());
@@ -56,12 +55,19 @@ public class ApplicationService implements ModelService<Application>   {
     entityManager.remove(findById(id));
     }
 
-    public void searchApplicationByName(String name){
-       entityManager.createQuery("SELECT a FROM Application a WHERE name =:name")
-                .setParameter("name",name).getSingleResult();
-
+    public List<Application> getApplicationByUser(Long userId){
+        return entityManager.createQuery("select app from Application app join app.users u where u.id=:id", Application.class)
+                .setParameter("id",userId).getResultList();
     }
 
+    public List<Application> searchApplicationByName(String name){
+        return entityManager.createQuery("SELECT app FROM Application app WHERE app.name =:name", Application.class)
+                .setParameter("name",name).getResultList();
+    }
 
+    public List<Application> findApplicationByUser(String name){
+        return entityManager.createQuery("select app from Application app where app.name =: name", Application.class)
+                .setParameter("name",name).getResultList();
+    }
 
 }

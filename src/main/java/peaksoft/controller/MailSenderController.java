@@ -8,7 +8,7 @@ import peaksoft.model.MailSender;
 import peaksoft.service.impl.MailSenderService;
 
 @Controller
-@RequestMapping("/mailSender")
+@RequestMapping("/mailSenders")
 public class MailSenderController {
 
     private final MailSenderService mailSenderService;
@@ -33,15 +33,14 @@ public class MailSenderController {
     @GetMapping("/find-all")
     public String getAllMailSender(Model model) {
         model.addAttribute("mailSenderList", mailSenderService.findAll());
-        return "mailsender/get-all";
+        return "mailSender/get-all";
     }
-
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable("id") Long id, Model model) {
         MailSender mailSender = mailSenderService.findById(id);
         model.addAttribute("mail",mailSender);
-        return "mailsender/update";
+        return "mailSender/update";
     }
 
     @PostMapping("{id}")

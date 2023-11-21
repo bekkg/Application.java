@@ -7,19 +7,25 @@
 
 <style>
     body{
-        background-image: url("https://mriyamed.ru/upload/iblock/9d8/9d834efe30cc41c2dbc4f58e748417f5.jpg");
+        /*background-image: url("https://mriyamed.ru/upload/iblock/9d8/9d834efe30cc41c2dbc4f58e748417f5.jpg");*/
+        background-color: white;
         background-size: cover;
         object-fit: cover;
         display: flex;
         height: 100vh;
-        margin: 300px 0px 100px 500px;
+        margin: 200px 0px 100px 500px;
     }
 
-    form, input {
 
+    form, input {
         color: springgreen;
         text-align: center;
     }
+    input {
+        display: flex;
+        gap: 5px;
+    }
+
 </style>
 <body>
 
@@ -45,6 +51,15 @@
         <lebel class="header" for="PREMIUM">  <h3>PREMIUM</h3>    </lebel>
     </div>
 
+<!--    <select th:field="*{appStatus}">-->
+<!--        <option th:each="app:${applist}"-->
+<!--                th:value="${app.id}"-->
+<!--                th:text="${app.name}">-->
+<!--        </option>-->
+<!--    </select>-->
+<!--    <br>-->
+
+
     <select th:field="*{genreId}">
         <option th:each="genre:${genreList}"
                 th:value="${genre.id}"
@@ -53,6 +68,8 @@
     </select>
   <br>
       <button type="submit" style="color:green">ADD</button>
+    <a th:href="/application/main"> <button class="button" style="color: #4caf50" >MAIN</button> </a>
 </form>
+
 </body>
 </html>

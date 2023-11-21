@@ -6,8 +6,16 @@
 </head>
 
 <style>
-    form, input {
+    body{
+        background-color: darkturquoise;
+        display: flex;
         text-align: center;
+        margin: 1000px 500px 400px 400px;
+    }
+    form, input {
+    display: flex;
+        font-size: 20px;
+
     }
 </style>
 
@@ -21,11 +29,7 @@
     <br>
     <input th:text="text" th:field="*{text}" placeholder="text">
     <br>
-    <input th:text="createDate" th:field="*{createDate}" placeholder="createDate">
-    <br>
-    <br>
-    <button type="submit" style="color:yellow">ADD</button>
-
+    <button type="submit" style="color:red">ADD</button>
 </form>
 
 </body>

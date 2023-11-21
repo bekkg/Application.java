@@ -6,7 +6,7 @@
     <title>Registration</title>
 </head>
 <style>
-    /* style.css */
+
     body {
         background-image: url("https://im.kommersant.ru/Issues.photo/NAUKA_Online/2017/03/11/KMO_111307_16742_1_t218_201141.jpg");
         background-size: cover;
@@ -62,7 +62,6 @@
         background-color: #45a049;
     }
 
-
 </style>
 <body>
 <div class="container">
@@ -80,19 +79,18 @@
         <label for="password">password:</label>
         <input type="password" id="password" th:field="*{password}" required>
 
-        <label for="age">age:</label>
-        <input type="age" id="age" th:field="*{age}" required>
+<!--        <select>-->
+<!--            <option type="checkbox" checked="checked" value="BASIC" th:field="*{subscriptionStatus}"><h3>BASIC</h3></option>-->
+<!--            <option type="checkbox" checked="checked" value="PREMIUM" th:field="*{subscriptionStatus}"><h3>PREMIUM</h3></option>-->
+<!--        </select>-->
 
-
-        <button type="submit">REGISTRATION</button>
-        <br>
-        <button>
-            <a href="/login">SIGN IN</a>
-        </button>
         <label>
-            <input type="checkbox" checked="checked" name="subscribe"> Daily Newsletter
+            <input type="checkbox" checked="checked"  name="*{subscriptionStatus}" > Daily Newsletter
         </label>
 
+        <button type="submit"> REGISTRATION </button>
+        <br>
+        <button>   <a href="/login"> SIGN IN </a>  </button>
     </form>
 
 </div>

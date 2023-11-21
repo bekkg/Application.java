@@ -21,13 +21,19 @@ public class UserService implements ModelService<User> {
 
     @PersistenceContext
     private EntityManager entityManager;
+
     @Autowired
     private RoleService roleService;
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void save(User user) {
+        if ( roleService.findAll().isEmpty()){
+            roleService.creat("ADMIN");
+            roleService.creat("USER");
+        }
         if (findAll().isEmpty()) {
             Role adminRole = roleService.findByName("ADMIN");
             adminRole.setUsers(Collections.singletonList(user));
@@ -42,19 +48,18 @@ public class UserService implements ModelService<User> {
         entityManager.persist(user);
     }
 
-    public User findByName(String name){
-        return entityManager.createQuery("select u from User u where  u.email=:email", User.class).setParameter("email",name).getSingleResult();
+    public User findByEmail(String email){
+        return entityManager.createQuery("select u from User u where u.email=:email", User.class)
+                .setParameter("email",email).getSingleResult();
     }
     @Override
     public User findById(Long id) {
-        User user = entityManager.find(User.class, id);
-        return user;
+        return entityManager.find(User.class, id);
     }
 
     @Override
     public List<User> findAll() {
-        List<User> userList = entityManager.createQuery("from User",User.class).getResultList();
-        return userList;
+        return entityManager.createQuery("from User",User.class).getResultList();
     }
 
     @Override
@@ -73,11 +78,19 @@ public class UserService implements ModelService<User> {
         entityManager.remove(findById(id));
     }
 
+
+    public User findByName (String email){
+        return  entityManager.createQuery("select u from User u where u.email=:email",User.class)
+                .setParameter("email",email).getSingleResult();
+    }
+
+
     public User getUserByGmailName(String email, String password) {
         return (User) entityManager.createQuery("SELECT u FROM User u WHERE u.email =:email and u.password=:password")
                 .setParameter("email", email)
                 .setParameter("password", password).getSingleResult();
     }
+
 
     public User searchUserByName(String userName) {
        return entityManager.createQuery("SELECT u FROM User u WHERE u.email =:email", User.class)
@@ -96,9 +109,9 @@ public class UserService implements ModelService<User> {
         }
     }
 
-    public void addRoleByUser ( Long userid, Long roleid){
+    public void addRoleByUser ( Long userid, Long roleId){
         User user = findById(userid);
-        Role role = entityManager.find(Role.class,roleid);
+        Role role = entityManager.find(Role.class,roleId);
         if (user != null && role != null){
             List <Role> myRole = user.getRoles();
             if(!myRole.contains(role)){
@@ -107,6 +120,8 @@ public class UserService implements ModelService<User> {
             }
         }
     }
+
+
 
 }
 

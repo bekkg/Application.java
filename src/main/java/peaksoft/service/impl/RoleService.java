@@ -14,6 +14,12 @@ public class RoleService {
     @PersistenceContext
     private EntityManager entityManager;
 
+    public void creat ( String roleName){
+        Role role = new Role();
+        role.setRoleName(roleName);
+        entityManager.persist(role);
+    }
+
     public Role findByName (String name){
         return entityManager.createQuery("select r from Role r where r.roleName=:name",Role.class).setParameter("name",name).getSingleResult();
     }

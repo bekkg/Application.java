@@ -60,4 +60,9 @@ public class GenreController {
         System.out.println("success delete Genre Controller");
         return "redirect:find-all";
     }
+
+    @GetMapping("/main")
+    public String all (){
+        return "genre/main-genre";
+    }
 }

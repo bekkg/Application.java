@@ -6,25 +6,41 @@
 </head>
 
 <style>
-    form, input {
+    body{
+        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDy0rDB59vcQ2mFzsuIRr7y0si5jR8EaRceZs0nYy7puiI6kNMZlXbICaqMBOOWfDbBQc&usqp=CAU");
+        /*background-size: cover;*/
+        object-fit: cover;
+        /*width: 100%;*/
+        /*height: 100vh;*/
         text-align: center;
+
+
     }
+   .save{
+
+       align-items: center;
+       padding: 500px 500px 500px 500px;
+       display: inline-block;
+
+
+   }
 </style>
 
 <body>
-
-    <form th:object="${mailSender1}"
-      th:action="@{save}"
+    <div  class="save">
+    <form
+      th:object="${mailSender1}"
+      th:action="@{/mailSenders/save}"
       th:method="post">
 
-    <input th:text="sender" th:field="*{sender}" placeholder="sender">
+    <input th:type="sender"   th:text="sender" th:field="*{sender}" placeholder="sender">
     <br>
     <input th:text="text" th:field="*{text}" placeholder="text">
-    <br>
+
     <br>
     <button type="submit" style="color:green">ADD</button>
 
     </form>
-
+    </div>
 </body>
 </html>

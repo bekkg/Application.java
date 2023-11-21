@@ -45,5 +45,4 @@ public class Application {
             CascadeType.PERSIST}, mappedBy = "applications")
     private List<User> users;
 
-
 }

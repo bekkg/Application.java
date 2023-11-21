@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        background-image: url("https://million-wallpapers.ru/wallpapers/4/42/346181180430775/zastavka-rabochego-stola-na-kompyutere.jpg");
+        background-size: cover  /* если картина больше экрана , то это команда сделает по размеру экрана */;
+        display: flex;
+        gap: 20px;
+        justify-content: center ;
+        align-items: center;
+        height: 65vh;
+        margin: 0;
+    }
+    .button {
+        /*padding:40px 50px 30px;*/
+        padding: 30px;
+        font-size: 20px;
+        /*background-color: #3498db; !* Цвет фона кнопки *!*/
+        color: blue; /* Цвет текста кнопки */
+        border: none; /* Убираем границу кнопки */
+        border-radius: 10px; /* Закругляем углы кнопки */
+        cursor: pointer; /* Устанавливаем курсор в виде стрелки */
+    }
+    .button:hover {
+        background-color: #14a20a; /* Изменяем цвет фона при наведении курсора */
+    }
+</style>
+<body>
+
+<a href="/genre/add">   <button class="button">CREATE GENRES </button>    </a>
+<br>
+<a href="/genre/find-all">  <button class="button"> INFORMATION </button>   </a>
+<br >
+<a  th:href="@{/logout}"> <button class="button" type="button" >log out</button>  </a>
+
+
+
+</body>
+</html>

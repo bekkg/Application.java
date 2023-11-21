@@ -59,7 +59,7 @@ public class MailSenderService implements ModelService<MailSender> {
 
     @Override
     public List<MailSender> findAll() {
-        List<MailSender> mailSenderList = entityManager.createQuery("from MailSender").getResultList();
+        List<MailSender> mailSenderList = entityManager.createQuery("from MailSender", MailSender.class).getResultList();
         return mailSenderList;
     }
 

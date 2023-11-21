@@ -7,7 +7,6 @@
 
 </head>
 <style>
-    /* style.css */
     body {
         font-family: Arial, sans-serif;
         background-color: blue;
@@ -55,35 +54,35 @@
         <tbody th:object="${user11}">
         <tr >
             <td>ID:</td>
-            <td th:text="${user11.id}"></td> <!-- Замени на фактический ID пользователя -->
+            <td th:text="${user11.id}"></td>
         </tr>
         <tr>
             <td>Name:</td>
-            <td th:text="${user11.name}"></td> <!-- Замени на фактическое имя пользователя -->
+            <td th:text="${user11.name}"></td>
         </tr>
         <tr>
             <td>Age:</td>
-            <td th:text="${user11.age}"></td> <!-- Замени на фактический возраст пользователя -->
+            <td th:text="${user11.age}"></td>
         </tr>
         <tr>
             <td>Email:</td>
-            <td th:text="${user11.email}"></td> <!-- Замени на фактический email пользователя -->
+            <td th:text="${user11.email}"></td>
         </tr>
         <tr>
             <td>Role:</td>
-            <td th:text="${user11.role}"></td> <!-- Замени на фактическую роль пользователя -->
+            <td th:text="${user11.getAuthorities()}"></td>
         </tr>
         <tr>
             <td>Subscribe:</td>
-            <td th:text="${user11.subscribeToTheNewsletter}"></td> <!-- Замени на фактическое значение подписки на рассылку -->
+            <td th:text="${user11.subscribeToTheNewsletter}"></td>
         </tr>
         <tr>
             <td>Subscribe status:</td>
-            <td th:text="${user11.subscriptionStatus}"></td> <!-- Замени на фактический статус подписки -->
+            <td th:text="${user11.subscriptionStatus}"></td>
         </tr>
         <tr>
             <td>Create date:</td>
-            <td th:text="${user11.createDate}"></td> <!-- Замени на фактическую дату создания пользователя -->
+            <td th:text="${user11.createDate}"></td>
         </tr>
         </tbody>
     </table>

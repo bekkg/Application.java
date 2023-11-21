@@ -12,12 +12,12 @@
         background-image: url("https://blog.okko.tv/thumb/1320x0/filters:quality(75):no_upscale()/imgs/2023/06/21/04/5956963/894cf2059c528256a6d6b98dbe1df4291179fa47.jpeg");
         background-size: cover;
         object-fit: cover;
+        font-size: 30px;
+        padding: 100px 10px 80px 330px;
+        text-align: center;
     }
     form {
         display: flex;
-        padding: 100px 10px 80px 330px;
-        align-items: center;
-        text-align: center;
     }
     button{
        background-color: lawngreen;
@@ -33,6 +33,7 @@
     <input th:text="description" th:field="*{description}" placeholder="description">
     <br>
     <button class="add" type="submit" style="color:green">ADD</button>
+    <a th:href="/genre/main"> <button class="button" style="color: #4caf50" >MAIN </button> </a>
 </form>
 
 </body>

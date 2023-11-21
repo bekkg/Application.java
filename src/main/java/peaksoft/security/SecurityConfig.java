@@ -3,7 +3,6 @@ package peaksoft.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -36,8 +35,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception{
         http.authorizeHttpRequests(authorize->
                 authorize.requestMatchers("/").permitAll()
-                        .requestMatchers("/","/save").permitAll()
-                        .requestMatchers("/find-all").hasAnyAuthority("ADMIN","USER")
+                        .requestMatchers("/add").permitAll()
+                        .requestMatchers("/save").permitAll()
+                        .requestMatchers("/logout").permitAll()
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/profile/{Id}").permitAll()
+                        .requestMatchers("/update/{id}").permitAll()
+                        .requestMatchers("/find-all").permitAll()
+//                        .requestMatchers("/find-all").hasAnyAuthority("ADMIN","USER")
                         .anyRequest().authenticated())
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults());

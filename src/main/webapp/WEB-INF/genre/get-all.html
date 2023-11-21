@@ -1,66 +1,166 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"  >
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
 
 </head>
-
 <style>
-    body{
-        display: flex;
-        height: 15vh;
-        background-image: url("https://img-cdn.tinkoffjournal.ru/best-movies-2023-og-fb.mfyhhre0k655..png");
+    /* style.css */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #45a049;
         background-size: cover;
-        object-fit: cover;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
     }
+
+    .container {
+        width: 50%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
     table {
-       color: #333333;
-        margin: auto; /* Устанавливаем автоматические отступы по бокам */
-        border-collapse: collapse; /* Объединяем границы ячеек */
-        width: 50%; /* Задаем ширину таблицы */
+        width: 100%;
+        margin-top: 20px;
+        gap: 20px;
     }
 
-    th, td {
-        color: blue;
-        border: 1px solid black; /* Устанавливаем границы ячеек */
-        padding: 8px; /* Устанавливаем внутренний отступ в ячейках */
-        text-align: center; /* Выравниваем текст по центру */
+    td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
     }
+
+    td:first-child {
+        font-weight: bold;
+    }
+
+
 </style>
-
 <body>
-
-        <table>
-        <tr>
-
-              <td>ID</td>
-              <td>NAME</td>
-              <td>DESCRIPTION</td>
-              <td>CREAT-DATE</td>
-              <td >UPDATE</td>
-              <td >DELETE</td>
+<div class="container">
+    <h2>Information</h2>
+    <table>
+        <tbody th:each="GENRE:${genreList}">
+        <tr >
+            <td>ID:</td>
+            <td th:text="${GENRE.id}"></td> <!-- Замени на фактический ID пользователя -->
         </tr>
-         <tr th:each="genre:${genreList}">
-          <td th:text="${genre.id}"></td>
-           <td th:text="${genre.name}"></td>
-           <td th:text="${genre.description}"></td>
-           <td th:text="${genre.creatDate}"></td>
+        <tr>
+            <td>NAME:</td>
+            <td th:text="${GENRE.name}"></td> <!-- Замени на фактическое имя пользователя -->
+        </tr>
+        <tr>
+            <td>DESCRIPTION:</td>
+            <td th:text="${GENRE.description}"></td> <!-- Замени на фактический возраст пользователя -->
+        </tr>
+        <tr>
+            <td>DATA:</td>
+            <td th:text="${GENRE.creatDate}"></td> <!-- Замени на фактический email пользователя -->
+        </tr>
+        <button class="button"> <a  th:href="@{/genre/update/{id}(id=${GENRE.id})}">  <strong>UPDATE</strong>  </a>  </button>
+        <button class="button"> <a th:href="@{/logout}">LOG OUT</a> </button>
+        <button> <a th:href="@{/genre/add}">CREATE</a> </button>
+        <button class="button" style="color: #4caf50" >  <a th:href="/genre/main">MAIN</a> </button>
 
-    <td>
-        <a th:href="@{/genre/update/{id}(id=${genre.getId()})}">
-            <button type="button" style="background-color:aqua">update</button>
-        </a>
-    </td>
-             <td>
-                 <a th:href="@{/genre/{id}(id=${genre.id})}">
-                     <button type="button" style="background-color:aqua">delete</button>
-                 </a>
-             </td>
-
-         </tr>
-     </table>
-
+        </tbody>
+    </table>
+</div>
 </body>
-
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org" >-->
+<!--<head>-->
+<!--    <meta charset="UTF-8"  >-->
+<!--    <title>Title</title>-->
+
+<!--</head>-->
+
+<!--<style>-->
+<!--    body{-->
+<!--        display: flex;-->
+<!--        height: 15vh;-->
+<!--        background-image: url("https://img-cdn.tinkoffjournal.ru/best-movies-2023-og-fb.mfyhhre0k655..png");-->
+<!--        background-size: cover;-->
+<!--        object-fit: cover;-->
+<!--    }-->
+<!--    table {-->
+<!--       color: #333333;-->
+<!--        margin: auto; /* Устанавливаем автоматические отступы по бокам */-->
+<!--        border-collapse: collapse; /* Объединяем границы ячеек */-->
+<!--        width: 50%; /* Задаем ширину таблицы */-->
+<!--    }-->
+
+<!--    th, td {-->
+<!--        color: blue;-->
+<!--        border: 1px solid black; /* Устанавливаем границы ячеек */-->
+<!--        padding: 8px; /* Устанавливаем внутренний отступ в ячейках */-->
+<!--        text-align: center; /* Выравниваем текст по центру */-->
+<!--    }-->
+<!--</style>-->
+
+<!--<body>-->
+
+<!--        <table>-->
+<!--        <tr>-->
+
+<!--              <td>ID</td>-->
+<!--              <td>NAME</td>-->
+<!--              <td>DESCRIPTION</td>-->
+<!--              <td>CREAT-DATE</td>-->
+<!--              <td >UPDATE</td>-->
+<!--              <td >DELETE</td>-->
+<!--        </tr>-->
+<!--         <tr th:each="genre:${genreList}">-->
+<!--          <td th:text="${genre.id}"></td>-->
+<!--           <td th:text="${genre.name}"></td>-->
+<!--           <td th:text="${genre.description}"></td>-->
+<!--           <td th:text="${genre.creatDate}"></td>-->
+
+<!--    <td>-->
+<!--        <a th:href="@{/genre/update/{id}(id=${genre.getId()})}">-->
+<!--            <button type="button" style="background-color:aqua">update</button>-->
+<!--        </a>-->
+<!--    </td>-->
+<!--             <td>-->
+<!--                 <a th:href="@{/genre/{id}(id=${genre.id})}">-->
+<!--                     <button type="button" style="background-color:aqua">delete</button>-->
+<!--                 </a>-->
+<!--             </td>-->
+
+<!--         </tr>-->
+<!--     </table>-->
+
+<!--</body>-->
+
+<!--</html>-->

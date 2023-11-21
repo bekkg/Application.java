@@ -8,7 +8,13 @@
 </head>
 
 <style>
+    body{
+        /*background-image: url("https://im.kommersant.ru/Issues.photo/NAUKA_Online/2017/03/11/KMO_111307_16742_1_t218_201141.jpg");*/
+        /*background-size: cover;*/
+        background-color: lawngreen;
+    }
     table {
+        background-color: white;
         margin: auto; /* Устанавливаем автоматические отступы по бокам */
         border-collapse: collapse; /* Объединяем границы ячеек */
         width: 50%; /* Задаем ширину таблицы */
@@ -22,11 +28,15 @@
     h1{
         text-align: center;
     }
+    block{
+    padding: 500px 700px 500px 500px;
+        margin-top: inherit;
+    }
 </style>
-
 <body>
-<h1>get-all</h1>
 
+<div>
+    <h1>get-all</h1>
 <table>
     <tr>
         <td>ID</td>
@@ -39,7 +49,7 @@
         <td>SUBSCRIPTION-STATUS</td>
         <td>SUBSCRIPTION-TO-THE-LETTER</td>
         <td style="background-color: aqua" > UPDATE</td>
-        <td sec:authorize="hasAuthority('ADMIN')"  style="background-color: red" > DELETE </td>
+        <td sec:authorize="hasAuthority('ADMIN')" style="background-color: red" > DELETE </td>
     </tr>
 
     <tr th:each="user:${userList}">
@@ -62,13 +72,115 @@
                 <button type="button" style="background-color:red"> delete </button>
             </a>
         </td>
-        <td>
-            <a th:href="@{/logout}">
-           <button type="button" style="background-color: #14a20a " >logout </button>
-            </a>
-        </td>
     </tr>
+    <a th:href="@{/logout}">
+        <button class="block" type="button" style="background-color: #14a20a">logout </button>
+    </a>
 </table>
-
+</div>
 </body>
 </html>
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"  xmlns:th="http://www.thymeleaf.org"-->
+<!--                 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Information</title>-->
+<!--</head>-->
+<!--<style>-->
+<!--    body {-->
+<!--        font-family: Arial, sans-serif;-->
+<!--        background-color: #45a049;-->
+<!--        background-size: cover;-->
+<!--        margin: 0;-->
+<!--        padding: 0;-->
+<!--        display: flex;-->
+<!--        align-items: center;-->
+<!--        justify-content: center;-->
+<!--        height: 100vh;-->
+<!--    }-->
+<!--    .container {-->
+<!--        width: 50%;-->
+<!--        background-color: #fff;-->
+<!--        padding: 20px;-->
+<!--        border-radius: 5px;-->
+<!--        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--    }-->
+<!--    h2 {-->
+<!--        text-align: center;-->
+<!--        color: #333;-->
+<!--    }-->
+
+<!--    table {-->
+<!--        width: 100%;-->
+<!--        margin-top: 20px;-->
+<!--        gap: 20px;-->
+<!--    }-->
+
+<!--    td {-->
+<!--        padding: 10px;-->
+<!--        border-bottom: 1px solid #ddd;-->
+<!--    }-->
+
+<!--    td:first-child {-->
+<!--        font-weight: bold;-->
+<!--    }-->
+<!--</style>-->
+<!--<body>-->
+<!--<div class="container">-->
+<!--    <h2>Information</h2>-->
+<!--    <table>-->
+<!--        <tbody th:each="USER:${userList}">-->
+<!--        <tr >-->
+<!--            <td>ID:</td>-->
+<!--            <td th:text="${USER.id}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>NAME:</td>-->
+<!--            <td th:text="${USER.name}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>E-MAIL:</td>-->
+<!--            <td th:text="${USER.email}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>AGE:</td>-->
+<!--            <td th:text="${USER.age}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>PASSWORD:</td>-->
+<!--            <td th:text="${USER.password}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>DATA:</td>-->
+<!--            <td th:text="${USER.createDate}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>AGE:</td>-->
+<!--            <td th:text="${USER.subscribeToTheNewsletter}"></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>STATUS-SUBSCRIPTION:</td>-->
+<!--            <td th:text="${USER.subscriptionStatus}"></td>-->
+<!--        </tr>-->
+
+<!--        <button class="button"> <a  th:href="@{/update/{id}(id=${USER.id})}"><strong>UPDATE</strong>  </a>  </button>-->
+<!--        <button class="button"> <a th:href="@{/logout}">LOG OUT</a> </button>-->
+<!--        <button> <a th:href="@{/add}">CREATE</a> </button>-->
+
+<!--        <button class="button" style="color: #4caf50" >  <a th:href="/save">MAIN</a> </button>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+

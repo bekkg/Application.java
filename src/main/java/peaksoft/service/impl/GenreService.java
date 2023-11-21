@@ -1,11 +1,9 @@
 package peaksoft.service.impl;
 
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import peaksoft.model.Application;
 import peaksoft.model.Genre;
 import peaksoft.service.ModelService;
 import java.time.LocalDate;
@@ -49,5 +47,4 @@ public class GenreService implements ModelService <Genre> {
     public void deleteById(Long id) {
         entityManager.remove(findById(id));
     }
-
 }

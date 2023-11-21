@@ -10,7 +10,7 @@ import peaksoft.service.impl.UserService;
 
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping()
 public class UserController {
 
     private final UserService userService;
@@ -22,8 +22,13 @@ public class UserController {
         this.userService = userService;
         this.applicationService = applicationService;
     }
+    @GetMapping("/")
+    public String main() {
+        return "user/1";
+    }
 
-    @GetMapping()
+
+    @GetMapping("/add")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("appp",applicationService.findAll());
@@ -36,7 +41,7 @@ public class UserController {
         User user1 = userService.findById(user.getId());
         model.addAttribute("user22", user1);
         model.addAttribute("apps",applicationService.findAll());
-        return "user/for-admin";
+        return "user/main";
     }
 
     @GetMapping("/find-all")
@@ -55,9 +60,6 @@ public class UserController {
     @PostMapping("{id}")
     public String saveUpdate(@PathVariable("id") Long id, @ModelAttribute("user") User user) {
         userService.update(id, user);
-        if (user.getAuthorities().equals("ADMIN")) {
-            return "user/for-admin";
-        }
         return "redirect:find-all";
     }
 
@@ -74,13 +76,13 @@ public class UserController {
     return "user/profile";
     }
 
-    @PostMapping("/download/{userid}/{appid}")
-    public String addApplicationByUser(@PathVariable("userid")Long userid, @PathVariable("appid")Long appid, Model model) {
-    userService.addApplicationByUser(userid, appid);
-    User user1 = userService.findById(userid);
-    model.addAttribute("user22", user1);
-    model.addAttribute("apppp",applicationService.findById(appid));
-    return "user/add-application";
+    @GetMapping("/sign-in/{id}")
+    public String getUser (@PathVariable("id") Long id,Model model ){
+        User user1 = userService.findById(id);
+        model.addAttribute("user11", user1);
+        return "user/profile";
     }
+
+
 
 }

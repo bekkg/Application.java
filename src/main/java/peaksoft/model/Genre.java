@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+
 import java.util.List;
 import java.time.LocalDate;
 
@@ -23,6 +25,5 @@ public class Genre {
     private LocalDate creatDate;
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "genre")
     private List<Application> application;
-
 
 }

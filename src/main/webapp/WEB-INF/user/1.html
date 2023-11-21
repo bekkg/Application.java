@@ -15,7 +15,6 @@
             align-items: center;
             height: 65vh;
             margin: 0;
-
         }
         .button {
             /*padding:40px 50px 30px;*/
@@ -30,31 +29,32 @@
         .button:hover {
             background-color: brown; /* Изменяем цвет фона при наведении курсора */
         }
-
-        /*.button {*/
-        /*    padding: 40px;*/
-        /*    font-size: 28px;*/
-        /*}*/
-
     </style>
 </head>
 <body>
+<a href="/application/main">
+    <button class="button"> APPLICATION</button>
+</a>
+<br>
+<a href="/genre/main">
+    <button class="button"> GENRES</button>
+</a>
+<br>
+<div  >
+    <a   sec:authorize="hasAuthority('ADMIN')" href="/find-all" >
+        <button class="button"> USERS</button>
+    </a>
+</div>
 
-<a href="/application/find-all">   <button class="button"> APPLICATION </button>    </a>
 <br>
-<a href="/genre/find-all">  <button class="button"> GENRES </button>   </a>
-<br >
-   <a sec:authorize="hasAuthority('ADMIN')"  href="/users/find-all">  <button class="button"> USERS </button>   </a>
+<a href="/logout">
+    <button class="button" type="button"> LOG OUT</button>
+</a>
+
+<a   href="/add"> <button class="button"> CREATE </button> </a>
 <br>
-  <form class="button" th:object="${user22}" th:method="get" th:action="@{/profile/{Id}(Id=${user22.id}) }">
-    <input type="submit" name="download" style="height: 40px; width: 80px; background-color:red;"/>
-     <br>
-      <td>
-          <a th:href="@{/logout}">
-              <button type="button" style="background-color:aqua">log out</button>
-          </a>
-      </td>
-  </form>
+<a  href="/login"> <button class="button"> LOG IN </button> </a>
+
 
 </body>
 </html>
